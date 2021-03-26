@@ -16,8 +16,6 @@ const App = () => {
     });
   }, [movies]);
 
-  const userCanEdit = true;
-
   return (
     <>
       <Navbar />
