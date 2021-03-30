@@ -5,9 +5,11 @@ import api from "./utils/api";
 import Navbar from "./components/Header/Navbar";
 import CardMovies from "./components/Card/CardMovies";
 
-import { Typography, Box } from "@material-ui/core";
+import { TextField, Box, Grid, Button } from "@material-ui/core";
+import useStyles from "./styles/styles";
 
 const App = () => {
+  const classes = useStyles();
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -19,19 +21,22 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Typography
-        variant="h3"
-        style={{ textAlign: "center", marginTop: "10px" }}
-      >
-        Star Wars
-      </Typography>
+      <Grid className={classes.grid}>
+        <TextField
+          className={classes.search}
+          placeholder="Search"
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Button className={classes.button} variant="contained">
+          Search
+        </Button>
+      </Grid>
       <Box>
         {movies.map((movie) => (
-          <CardMovies
-            key={movie.show.id}
-            movie={movie.show}
-            userEdit={userCanEdit}
-          />
+          <CardMovies key={movie.show.id} movie={movie.show} />
         ))}
       </Box>
     </>
